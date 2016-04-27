@@ -1,4 +1,4 @@
-# [react-mvc-babel](https://github.com/albanecmlad/react-mvc-babel)
+# [react-todo](https://github.com/bethazari/react-todo)
 
 [![NPM version](http://img.shields.io/npm/v/react-mvc-babel.svg?style=flat-square)](https://www.npmjs.com/package/react-mvc-babel)
 [![NPM downloads](http://img.shields.io/npm/dm/react-mvc-babel.svg?style=flat-square)](https://www.npmjs.com/package/react-mvc-babel)
@@ -11,7 +11,7 @@
 ### How to Install
 
 ```sh
-$ npm install react-mvc-babel
+$ npm install react-todo
 ```
 
 ### Getting Started
@@ -29,11 +29,10 @@ $ npm run test:watch    # Run unit tests with Mocha, and watch files for changes
 $ npm run test:cover    # Run unit tests with code coverage by Istanbul
 ```
 
-To launch the documentation site, run:
+To build scripts, run:
 
 ```sh
-$ npm install -g easystatic
-$ npm start
+$ npm run build
 ```
 
 ### License
