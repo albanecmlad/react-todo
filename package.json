@@ -19,7 +19,8 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": "airbnb/base"
+    "extends": ["airbnb/base", "plugin:react/recommended"],
+    "plugins": ["react"]
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
@@ -38,6 +39,8 @@
     "eslint-plugin-react": "^4.3.0",
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^2.4.5",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
     "sinon": "^2.0.0-pre",
     "todomvc-app-css": "^2.0.0",
     "todomvc-common": "^1.0.1",
