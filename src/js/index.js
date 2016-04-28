@@ -4,17 +4,23 @@ import * as ReactDOM from 'react-dom';
 class TodoItem extends React.Component {
   static propTypes = {
     todo: React.PropTypes.string.isRequired,
+    onDestroy: React.PropTypes.func.isRequired,
   }
   render() {
     return (
       <li>
-        <div>
+        <div className="view">
           <input
+            className="toggle"
             type="checkbox"
           />
           <label>
             {this.props.todo}
           </label>
+          <button
+            className="destroy"
+            onClick={this.props.onDestroy}
+          />
         </div>
       </li>
     );
@@ -38,12 +44,18 @@ class TodoApp extends React.Component {
       this.setState({ newTodo: '' });
     }
   }
+  destroyTodo(index) {
+    const todos = this.state.todos;
+    todos.splice(index, 1);
+    this.setState({ todos });
+  }
   render() {
     return (
       <div>
-        <header>
+        <header className="header">
           <h1>TODOS</h1>
           <input
+            className="new-todo"
             placeholder="Что ещё осталось сделать?"
             value={this.state.newTodo}
             onChange={this.handleChange}
@@ -51,9 +63,10 @@ class TodoApp extends React.Component {
             autoFocus={true}
           />
         </header>
-        <section>
-          <ul>
-            {this.state.todos.map((todo, index) => <TodoItem key={index} todo={todo}/>)}
+        <section className="main">
+          <ul className="todo-list">
+            {this.state.todos.map((todo, index) =>
+              <TodoItem key={index} todo={todo} onDestroy={this.destroyTodo.bind(this, index)}/>)}
           </ul>
         </section>
       </div>
