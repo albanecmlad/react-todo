@@ -52,7 +52,7 @@
   },
   "scripts": {
     "lint": "eslint src/js tests",
-    "test": "mocha --compilers js:babel-register tests",
+    "test": "mocha --compilers js:babel-register --reporter spec tests",
     "test:watch": "mocha --compilers js:babel-register --reporter min --watch tests",
     "test:cover": "babel-node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha tests",
     "build": "webpack --colors --progress",
