@@ -1,4 +1,5 @@
 
+import { List } from 'immutable';
 import * as React from 'react';
 
 import TodoItem from './todo-item.js';
@@ -6,7 +7,7 @@ import TodoItem from './todo-item.js';
 export default class TodoApp extends React.Component {
   state = {
     newTodo: '',
-    todos: [],
+    todos: new List([]),
   }
   handleChange = (event) => {
     this.setState({ newTodo: event.target.value });
@@ -14,16 +15,12 @@ export default class TodoApp extends React.Component {
   handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       event.preventDefault();
-      const todos = this.state.todos;
-      todos.push(this.state.newTodo.trim());
-      this.setState({ todos });
+      this.setState({ todos: this.state.todos.push(this.state.newTodo.trim()) });
       this.setState({ newTodo: '' });
     }
   }
   destroyTodo(index) {
-    const todos = this.state.todos;
-    todos.splice(index, 1);
-    this.setState({ todos });
+    this.setState({ todos: this.state.todos.remove(index) });
   }
   render() {
     return (

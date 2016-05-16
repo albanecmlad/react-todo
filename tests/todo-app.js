@@ -28,7 +28,7 @@ describe('<TodoApp />', () => {
       expect(wrapper).to.have.state('newTodo', '');
     });
     it('initial state of todos...', () => {
-      expect(wrapper.state('todos')).to.have.length(0);
+      expect(wrapper.state('todos').size).to.be.equal(0);
     });
     it('initial todo-list DOM...', () => {
       expect(wrapper.find(TodoItem)).to.have.length(0);
@@ -59,7 +59,7 @@ describe('<TodoApp />', () => {
     });
 
     it('state not changing...', () => {
-      expect(wrapper.state('todos')).to.have.length(0);
+      expect(wrapper.state('todos').size).to.be.equal(0);
     });
     it('component not changing...', () => {
       expect(wrapper.find(TodoItem)).to.have.length(0);
@@ -73,10 +73,10 @@ describe('<TodoApp />', () => {
     });
 
     it('state changing...', () => {
-      expect(wrapper.state('todos')).to.have.length(1);
+      expect(wrapper.state('todos').size).to.be.equal(1);
     });
     it('state content...', () => {
-      expect(wrapper.state('todos')[0]).to.be.equal('test todo');
+      expect(wrapper.state('todos').get(0)).to.be.equal('test todo');
     });
     it('component changing...', () => {
       expect(wrapper.find(TodoItem)).to.have.length(1);
@@ -94,7 +94,7 @@ describe('<TodoApp />', () => {
     });
 
     it('state changing...', () => {
-      expect(wrapper.state('todos')).to.have.length(0);
+      expect(wrapper.state('todos').size).to.be.equal(0);
     });
     it('component changing...', () => {
       expect(wrapper.find(TodoItem)).to.have.length(0);
