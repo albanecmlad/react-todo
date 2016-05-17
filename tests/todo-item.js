@@ -24,7 +24,7 @@ describe('<TodoItem />', () => {
       expect(wrapper).to.be.present();
     });
     it('initial state...', () => {
-      expect(wrapper).to.have.state('completed', false);
+      expect(wrapper.state('data').get('completed')).to.be.equal(false);
     });
     it('initial DOM...', () => {
       expect(wrapper.find('input.toggle')).to.not.be.checked();
@@ -38,7 +38,7 @@ describe('<TodoItem />', () => {
     });
 
     it('state changing...', () => {
-      expect(wrapper).to.have.state('completed', true);
+      expect(wrapper.state('data').get('completed')).to.be.equal(true);
     });
     it('component changing...', () => {
       expect(wrapper.find('input.toggle')).to.be.checked();

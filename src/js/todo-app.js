@@ -1,26 +1,31 @@
 
-import { List } from 'immutable';
+import { Map, List } from 'immutable';
 import * as React from 'react';
 
 import TodoItem from './todo-item.js';
 
 export default class TodoApp extends React.Component {
   state = {
-    newTodo: '',
-    todos: new List([]),
+    data: new Map({
+      newTodo: '',
+      todos: new List([]),
+    }),
   }
   handleChange = (event) => {
-    this.setState({ newTodo: event.target.value });
+    const data = this.state.data;
+    this.setState({ data: data.set('newTodo', event.target.value) });
   }
   handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       event.preventDefault();
-      this.setState({ todos: this.state.todos.push(this.state.newTodo.trim()) });
-      this.setState({ newTodo: '' });
+      let data = this.state.data;
+      data = data.set('todos', data.get('todos').push(data.get('newTodo').trim()));
+      this.setState({ data: data.set('newTodo', '') });
     }
   }
   destroyTodo(index) {
-    this.setState({ todos: this.state.todos.remove(index) });
+    const data = this.state.data;
+    this.setState({ data: data.set('todos', data.get('todos').remove(index)) });
   }
   render() {
     return (
@@ -30,7 +35,7 @@ export default class TodoApp extends React.Component {
           <input
             className="new-todo"
             placeholder="Что ещё осталось сделать?"
-            value={this.state.newTodo}
+            value={this.state.data.get('newTodo')}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             autoFocus={true}
@@ -38,7 +43,7 @@ export default class TodoApp extends React.Component {
         </header>
         <section className="main">
           <ul className="todo-list">
-            {this.state.todos.map((todo, index) =>
+            {this.state.data.get('todos').map((todo, index) =>
               <TodoItem key={index} todo={todo} onDestroy={this.destroyTodo.bind(this, index)}/>)}
           </ul>
         </section>

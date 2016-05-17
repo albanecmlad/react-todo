@@ -1,29 +1,33 @@
 
+import { Map } from 'immutable';
 import * as React from 'react';
 
 const classnames = require('classnames');
 
 export default class TodoItem extends React.Component {
   state = {
-    completed: false,
+    data: new Map({
+      completed: false,
+    }),
   }
   static propTypes = {
     todo: React.PropTypes.string.isRequired,
     onDestroy: React.PropTypes.func.isRequired,
   }
   handleChange = () => {
-    this.setState({ completed: !this.state.completed });
+    const data = this.state.data;
+    this.setState({ data: data.set('completed', !data.get('completed')) });
   }
   render() {
     return (
       <li className={classnames({
-        completed: this.state.completed,
+        completed: this.state.data.get('completed'),
       })}>
         <div className="view">
           <input
             className="toggle"
             type="checkbox"
-            checked={this.state.completed}
+            checked={this.state.data.get('completed')}
             onChange={this.handleChange}
           />
           <label>
