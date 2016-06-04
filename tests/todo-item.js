@@ -1,9 +1,9 @@
 
-import * as React from 'react';
+import React from 'react';
 
 import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
-import * as chai from 'chai';
+import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 
 import TodoItem from './../src/js/todo-item.js'

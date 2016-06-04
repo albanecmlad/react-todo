@@ -1,8 +1,40 @@
 
 import { Map, List } from 'immutable';
-import * as React from 'react';
+import { createStore } from 'redux';
+import React from 'react';
 
 import TodoItem from './todo-item.js';
+
+const bootstrap = new Map({
+  newTodo: '',
+  todos: new List([
+    new Map({
+      todo: 'test1',
+      completed: false,
+    }),
+    new Map({
+      todo: 'test2',
+      completed: false,
+    }),
+    new Map({
+      todo: 'test3',
+      completed: true,
+    }),
+    new Map({
+      todo: 'test4',
+      completed: false,
+    }),
+  ]),
+});
+
+const todoAppReducer = (state = bootstrap, action) => {
+  console.log(action);
+  return state;
+};
+
+const store = createStore(todoAppReducer);
+
+console.log(store);
 
 export default class TodoApp extends React.Component {
   state = {
@@ -18,9 +50,12 @@ export default class TodoApp extends React.Component {
   handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       event.preventDefault();
-      let data = this.state.data;
-      data = data.set('todos', data.get('todos').push(data.get('newTodo').trim()));
-      this.setState({ data: data.set('newTodo', '') });
+      const data = this.state.data;
+      this.setState({
+        data: data
+          .set('todos', data.get('todos').push(data.get('newTodo').trim()))
+          .set('newTodo', ''),
+      });
     }
   }
   destroyTodo(index) {

@@ -1,6 +1,6 @@
 
 import { Map } from 'immutable';
-import * as React from 'react';
+import React from 'react';
 
 const classnames = require('classnames');
 
@@ -11,6 +11,7 @@ export default class TodoItem extends React.Component {
     }),
   }
   static propTypes = {
+    completed: React.PropTypes.bool.isRequired,
     todo: React.PropTypes.string.isRequired,
     onDestroy: React.PropTypes.func.isRequired,
   }
@@ -19,6 +20,7 @@ export default class TodoItem extends React.Component {
     this.setState({ data: data.set('completed', !data.get('completed')) });
   }
   render() {
+    console.log(this.props.todo);
     return (
       <li className={classnames({
         completed: this.state.data.get('completed'),
