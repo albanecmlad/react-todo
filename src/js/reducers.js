@@ -1,7 +1,7 @@
 
 import { Map, List } from 'immutable';
 
-import { ADD_TODO } from './actions.js';
+import { ADD_TODO, TOGGLE_TODO } from './actions.js';
 
 const initialState = new Map({
   newTodo: '',
@@ -29,6 +29,18 @@ export default function todoAppReducer(state = { data: initialState }, action) {
                 todo: action.text.trim(),
                 completed: false,
               }))
+          ),
+      };
+    case TOGGLE_TODO:
+      return {
+        data: state.data
+          .set(
+            'todos',
+            state.data.get('todos')
+              .update(
+                action.id,
+                (todo) => todo.set('completed', !todo.get('completed'))
+              )
           ),
       };
     default:

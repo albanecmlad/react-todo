@@ -8,7 +8,7 @@ export default class TodoAppComponent extends React.Component {
     return (
       <div>
         <header className="header">
-
+          <h1>TODOS</h1>
         </header>
         <section className="main">
           <TodoListContainer/>
