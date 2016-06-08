@@ -15,7 +15,7 @@ chai.use(chaiImmutable);
 
 let wrapper;
 
-describe('<TodoApp />', () => {
+describe('<TodoAppComponent />', () => {
 
   describe('component', () => {
 
