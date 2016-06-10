@@ -37,6 +37,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
+    "browser-sync": "^2.13.0",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.4.2",
     "chai-immutable": "^1.5.4",
@@ -66,6 +67,6 @@
     "test:watch": "mocha --compilers js:babel-register --reporter min --watch tests",
     "test:cover": "babel-node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha tests",
     "build": "webpack --colors --progress",
-    "start": ""
+    "start": "npm run build && browser-sync start -s --port 8888"
   }
 }
